@@ -1,0 +1,17 @@
+{
+  "name": "vax",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "dev": "tsc && node ./api/index.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "faker": "^6.6.6"
+  },
+  "devDependencies": {
+    "@faker-js/faker": "^7.6.0",
+    "typescript": "^4.9.5"
+  }
+}
