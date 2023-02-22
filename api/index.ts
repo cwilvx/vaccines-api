@@ -5,7 +5,7 @@ const app = express();
 
 // Define a route that serves vaccine data
 app.get("/api/vaccines", (req, res) => {
-  const vaccines = [];
+  const vaccines: any[] = [];
 
   // Generate fake vaccine data using Faker.js
   for (let i = 0; i < 10; i++) {
@@ -30,7 +30,7 @@ app.get("/api/vaccines", (req, res) => {
 
 // define route to serve a list of location strings
 app.get("/api/locations", (req, res) => {
-  const locations = [];
+  const locations: any[] = [];
 
   // Generate fake location data using Faker.js
   for (let i = 0; i < 10000; i++) {
