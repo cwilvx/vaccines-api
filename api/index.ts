@@ -5,7 +5,7 @@ import locations from "../data/locations";
 
 const app = express();
 
-app.get("/", (req, res) => {
+app.get("/index", (req, res) => {
   res.send({
     vaccines: "/vaccines",
     locations: "/locations",
