@@ -5,7 +5,14 @@ import locations from "../data/locations";
 
 const app = express();
 
-// Define a route that serves vaccine data
+app.get("/", (req, res) => {
+  res.send({
+    vaccines: "/vaccines",
+    locations: "/locations",
+  });
+});
+
+// vaccine data
 app.get("/vaccines", (req, res) => {
   const vaccines: any[] = [];
 
@@ -30,18 +37,11 @@ app.get("/vaccines", (req, res) => {
   res.send({ vaccines });
 });
 
-// define route to serve a list of location strings
+// location strings
 app.get("/locations", (req, res) => {
   res.send({ locations });
 });
 
-// define route that returns all api routes
-app.get("/index", (req, res) => {
-  res.send({
-    vaccines: "/vaccines",
-    locations: "/locations",
-  });
-});
 
 // Start the server
 const port = 3000;
