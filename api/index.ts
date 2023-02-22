@@ -1,10 +1,12 @@
 import express from "express";
 import { faker } from "@faker-js/faker";
 
+import locations from "../data/locations";
+
 const app = express();
 
 // Define a route that serves vaccine data
-app.get("/api/vaccines", (req, res) => {
+app.get("/vaccines", (req, res) => {
   const vaccines: any[] = [];
 
   // Generate fake vaccine data using Faker.js
@@ -29,28 +31,20 @@ app.get("/api/vaccines", (req, res) => {
 });
 
 // define route to serve a list of location strings
-app.get("/api/locations", (req, res) => {
-  const locations: any[] = [];
-
-  // Generate fake location data using Faker.js
-  for (let i = 0; i < 10000; i++) {
-    const location = {
-      name: faker.address.city(),
-      address: faker.address.streetAddress(),
-      zipCode: faker.address.zipCode(),
-      state: faker.address.state(),
-      country: faker.address.country(),
-    };
-
-    locations.push(location);
-  }
-
-  // Send the generated location data as a JSON response
+app.get("/locations", (req, res) => {
   res.send({ locations });
+});
+
+// define route that returns all api routes
+app.get("/", (req, res) => {
+  res.send({
+    vaccines: "/vaccines",
+    locations: "/locations",
+  });
 });
 
 // Start the server
 const port = 3000;
 app.listen(port, () => {
-  console.log(`Server listening on port ${port}`);
+  console.log(`Server listening on  http://localhost:${port}`);
 });
