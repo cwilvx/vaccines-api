@@ -4,7 +4,7 @@ import { faker } from "@faker-js/faker";
 const app = express();
 
 // Define a route that serves vaccine data
-app.get("/vaccines", (req, res) => {
+app.get("/api/vaccines", (req, res) => {
   const vaccines = [];
 
   // Generate fake vaccine data using Faker.js
@@ -25,11 +25,11 @@ app.get("/vaccines", (req, res) => {
   }
 
   // Send the generated vaccine data as a JSON response
-  res.json({ vaccines });
+  res.end({ vaccines });
 });
 
 // define route to serve a list of location strings
-app.get("/locations", (req, res) => {
+app.get("/api/locations", (req, res) => {
   const locations = [];
 
   // Generate fake location data using Faker.js
@@ -46,7 +46,7 @@ app.get("/locations", (req, res) => {
   }
 
   // Send the generated location data as a JSON response
-  res.json({ locations });
+  res.end({ locations });
 });
 
 // Start the server
