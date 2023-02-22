@@ -25,7 +25,7 @@ app.get("/api/vaccines", (req, res) => {
   }
 
   // Send the generated vaccine data as a JSON response
-  res.end({ vaccines });
+  res.send({ vaccines });
 });
 
 // define route to serve a list of location strings
@@ -46,7 +46,7 @@ app.get("/api/locations", (req, res) => {
   }
 
   // Send the generated location data as a JSON response
-  res.end({ locations });
+  res.send({ locations });
 });
 
 // Start the server
