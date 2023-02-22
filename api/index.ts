@@ -7,8 +7,10 @@ const app = express();
 
 app.get("/index", (req, res) => {
   res.send({
-    vaccines: "/vaccines",
-    locations: "/locations",
+    routes: {
+      vaccines: "/vaccines",
+      locations: "/locations",
+    },
   });
 });
 
@@ -41,7 +43,6 @@ app.get("/vaccines", (req, res) => {
 app.get("/locations", (req, res) => {
   res.send({ locations });
 });
-
 
 // Start the server
 const port = 3000;
