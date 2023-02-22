@@ -8,8 +8,8 @@ const app = express();
 app.get("/api", (req, res) => {
   res.send({
     routes: {
-      vaccines: "/vaccines",
-      locations: "/locations",
+      vaccines: "/api/vaccines",
+      locations: "/api/locations",
     },
   });
 });
