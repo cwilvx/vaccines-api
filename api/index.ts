@@ -19,8 +19,8 @@ app.get("/vaccines", (req, res) => {
         })
       ),
       description: faker.lorem.sentence(),
-      availability: true,
-      otherInfo: faker.lorem.paragraph(),
+      availability: i % (Math.round(new Date().getHours() / 2) + 1) === 0, // true or false if i is multiple of current hour with a twist
+      full_description: faker.lorem.paragraph(),
     };
 
     vaccines.push(vaccine);
@@ -36,7 +36,7 @@ app.get("/locations", (req, res) => {
 });
 
 // define route that returns all api routes
-app.get("/", (req, res) => {
+app.get("/index", (req, res) => {
   res.send({
     vaccines: "/vaccines",
     locations: "/locations",
