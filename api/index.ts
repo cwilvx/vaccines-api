@@ -5,7 +5,7 @@ import locations from "../data/locations";
 
 const app = express();
 
-app.get("/index", (req, res) => {
+app.get("/api", (req, res) => {
   res.send({
     routes: {
       vaccines: "/vaccines",
@@ -15,7 +15,7 @@ app.get("/index", (req, res) => {
 });
 
 // vaccine data
-app.get("/vaccines", (req, res) => {
+app.get("/api/vaccines", (req, res) => {
   const vaccines: any[] = [];
 
   // Generate fake vaccine data using Faker.js
@@ -40,7 +40,7 @@ app.get("/vaccines", (req, res) => {
 });
 
 // location strings
-app.get("/locations", (req, res) => {
+app.get("/api/locations", (req, res) => {
   res.send({ locations });
 });
 
