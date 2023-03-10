@@ -1,47 +1,72 @@
 import express from "express";
-import { faker } from "@faker-js/faker";
+import bodyParser from "body-parser";
 
-import locations from "../data/locations";
+import vaccines from "../data/vaccines";
+import { Child } from "../interfaces";
 
 const app = express();
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+
+let db: Child[] = [];
 
 app.get("/api", (req, res) => {
   res.send({
-    routes: {
-      vaccines: "/api/vaccines",
-      locations: "/api/locations",
-    },
+    routes: [
+      {
+        route: "/api/vaccines",
+        description: "Get all vaccines",
+        methods: ["GET"],
+      },
+      {
+        route: "/api/child",
+        description: "Add a single child",
+        methods: ["POST"],
+      },
+      {
+        route: "/api/child/:id",
+        description: "Get a single child by id",
+        methods: ["GET"],
+      },
+      {
+        route: "/api/children",
+        description: "Get all children",
+        methods: ["GET"],
+      },
+    ],
   });
 });
 
 // vaccine data
 app.get("/api/vaccines", (req, res) => {
-  const vaccines: any[] = [];
-
   // Generate fake vaccine data using Faker.js
-  for (let i = 0; i < 10; i++) {
-    const vaccine = {
-      name: faker.lorem.words(),
-      administeringAge: parseInt(
-        faker.random.numeric(1, {
-          bannedDigits: "0",
-        })
-      ),
-      description: faker.lorem.sentence(),
-      availability: i % (Math.round(new Date().getHours() / 2) + 1) === 0, // true or false if i is multiple of current hour with a twist
-      full_description: faker.lorem.paragraph(),
-    };
-
-    vaccines.push(vaccine);
-  }
 
   // Send the generated vaccine data as a JSON response
   res.send({ vaccines });
 });
 
-// location strings
-app.get("/api/locations", (req, res) => {
-  res.send({ locations });
+// add child
+app.post("/api/child", (req, res) => {
+  console.log(req.body);
+
+  const child = req.body as Child;
+  child.id = db.length + 1;
+
+  db.push(child);
+  res.send({ message: "Child added successfully" });
+});
+
+// get child by id
+app.get("/api/child/:id", (req, res) => {
+  const id = req.params.id;
+  const child = db.find((child) => child.id === parseInt(id));
+
+  res.send({ child: child ? child : null });
+});
+
+// get all children
+app.get("/api/children", (req, res) => {
+  res.send({ children: db });
 });
 
 // Start the server
