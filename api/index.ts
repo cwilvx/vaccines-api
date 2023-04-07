@@ -1,5 +1,5 @@
-import express from "express";
 import bodyParser from "body-parser";
+import express from "express";
 
 import vaccines from "../data/vaccines";
 import { Child, validateChild } from "../interfaces";
@@ -14,10 +14,10 @@ const test_child = {
   id: 1,
   child_name: "Kimata",
   guardian_name: "WaKimata",
-  guardian_phone: 88899,
-  age: 344,
+  guardian_phone: "88899",
+  age: "At 10 weeks",
   location: "Turkana",
-  is_male: true,
+  gender: "female",
 };
 
 app.get("/api", (req, res) => {

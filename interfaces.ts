@@ -2,10 +2,10 @@ export interface Child {
   id: number;
   child_name: string;
   guardian_name: string;
-  guardian_phone: number;
-  age: number;
+  guardian_phone: string;
+  age: string;
   location: string;
-  is_male: boolean;
+  gender: string;
 }
 
 export function validateChild(_data: any): _data is Child {
@@ -14,9 +14,9 @@ export function validateChild(_data: any): _data is Child {
     typeof _data.id === "number" &&
     typeof _data.child_name === "string" &&
     typeof _data.guardian_name === "string" &&
-    typeof _data.guardian_phone === "number" &&
-    typeof _data.age === "number" &&
+    typeof _data.guardian_phone === "string" &&
+    typeof _data.age === "string" &&
     typeof _data.location === "string" &&
-    typeof _data.is_male === "boolean"
+    typeof _data.gender === "string"
   );
 }
