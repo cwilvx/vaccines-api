@@ -1,5 +1,4 @@
 export interface Child {
-  id: number;
   child_name: string;
   guardian_name: string;
   guardian_phone: string;
@@ -11,7 +10,6 @@ export interface Child {
 export function validateChild(_data: any): _data is Child {
   // check if all the required fields are present and of the correct type
   return (
-    typeof _data.id === "number" &&
     typeof _data.child_name === "string" &&
     typeof _data.guardian_name === "string" &&
     typeof _data.guardian_phone === "string" &&
