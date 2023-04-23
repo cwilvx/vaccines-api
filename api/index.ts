@@ -101,13 +101,12 @@ app.get("/api/child/:id", async (req, res) => {
 
 // get all children ✅
 app.get("/api/children", async (req, res) => {
-  // try {
-  const children = await MongoChild.find();
-  res.send({children});
-  // } catch (error) {
-  //   console.log(error);
-  //   res.send({ error: "Could not fetch children data!" });
-  // }
+  try {
+    const children = await MongoChild.find();
+    res.send(children);
+  } catch (error) {
+    res.send({ error: "Could not fetch children data!" });
+  }
 });
 
 // Start the server
