@@ -9,8 +9,10 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
+// `mongodb+srv://dummy:@cluster0.vte2d.mongodb.net/?retryWrites=true&w=majority`
+
 mongoose.connect(
-  `mongodb+srv://dummy:${process.env.MONGO_ATLAS_PASSWORD}@cluster0.vte2d.mongodb.net/?retryWrites=true&w=majority`
+  `mongodb+srv://dummy:${process.env.MONGO_ATLAS_PASSWORD}@cluster0.tlj13e2.mongodb.net/?retryWrites=true&w=majority`
 );
 
 const childSchema = new mongoose.Schema({
