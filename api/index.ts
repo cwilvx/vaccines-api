@@ -9,8 +9,6 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-// `mongodb+srv://dummy:@cluster0.vte2d.mongodb.net/?retryWrites=true&w=majority`
-
 mongoose.connect(
   `mongodb+srv://dummy:${process.env.MONGO_ATLAS_PASSWORD}@cluster0.tlj13e2.mongodb.net/?retryWrites=true&w=majority`
 );
@@ -28,7 +26,6 @@ const childSchema = new mongoose.Schema({
 });
 
 const MongoChild = mongoose.model("Child", childSchema);
-
 
 app.get("/api", (req, res) => {
   res.send({
@@ -104,12 +101,13 @@ app.get("/api/child/:id", async (req, res) => {
 
 // get all children ✅
 app.get("/api/children", async (req, res) => {
-  try {
-    const children = await MongoChild.find();
-    res.send(children);
-  } catch (error) {
-    res.send({ error: "Could not fetch children data!" });
-  }
+  // try {
+  const children = await MongoChild.find();
+  res.send({children});
+  // } catch (error) {
+  //   console.log(error);
+  //   res.send({ error: "Could not fetch children data!" });
+  // }
 });
 
 // Start the server
